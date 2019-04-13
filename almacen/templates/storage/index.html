@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Storage{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('storage.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+prd_name, prd_manufacturer, current_units, warning_units, last_modified, author_id, usr_name
+{% block content %}
+  {% for product in products %}
+    <article class="product">
+      <header>
+        <div>
+          <p>
+            {{ product['prd_name'] }}
+            {{ product['prd_manufacturer'] }}
+            {{ product['current_units'] }}
+            {{ product['warning_units'] }}
+            {{ product['last_modified'].strftime('%Y-%m-%d') }}
+            {{ product['usr_name'] }}
+          </p>
+          </div>
+        <!--
+        {% if g.user['id'] == product['author_id'] %}
+          <a class="action" href="{{ url_for('storage.update', id=product['id']) }}">Edit</a>
+        {% endif %}
+        -->
+      </header>
+      <p class="manufacturer">{{ product['manufacturer'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

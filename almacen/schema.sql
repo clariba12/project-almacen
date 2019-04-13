@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  usr_name TEXT UNIQUE NOT NULL,
+  usr_password TEXT NOT NULL
+);
+
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  prd_name TEXT NOT NULL,
+  prd_manufacturer TEXT NOT NULL,
+  current_units INTEGER NOT NULL,
+  warning_units INTEGER NOT NULL,
+  author_id INTEGER NOT NULL,
+  last_modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (author_id) REFERENCES users (id)
+);

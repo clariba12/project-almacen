@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Product{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    
+    <label for="name">Product Name</label>
+    <input name="name" id="name" value="{{ request.form['name'] }}" required>
+    
+    <label for="manufacturer">Product manufacturer</label>
+    <input name="manufacturer" id="manufacturer" value="{{ request.form['body'] }}">
+    
+    <label for="current_units">Units</label>
+    <input name="current_units" id="current_units" type="number" step="1" value="{{ request.form['current_units'] }}" required>
+    
+    <label for="warning_units">Minimum units to send alert</label>
+    <input name="warning_units" id="warning_units" type="number" step="1" value="{{ request.form['warning_units'] }}" required>
+
+    <input type="submit" value="Save">
+
+  </form>
+{% endblock %}
